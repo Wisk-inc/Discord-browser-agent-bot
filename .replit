@@ -1,0 +1,30 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["ffmpeg-full", "chromium", "nss", "dbus", "atk", "cups", "libxkbcommon", "mesa", "cairo", "pango", "alsa-lib", "at-spi2-atk", "gtk3", "libdrm", "xorg.libxcb", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXfixes", "libgbm"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Discord Bot"
+
+[[workflows.workflow]]
+name = "Discord Bot"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash start_bot.sh"
+
+[workflows.workflow.metadata]
+outputType = "console"
